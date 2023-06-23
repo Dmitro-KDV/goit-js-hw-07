@@ -35,12 +35,22 @@ function selectImages(event) {
 
     const instance = basicLightbox.create(`
     <img src="${imgOriginalEl}" width="800" height="600">
-    `)
-  instance.show();
+    `,
+    {
+      onShow: () => {
+        window.addEventListener('keydown', onKeydownEsc);
+      },
+      onClose: () => {
+        window.removeEventListener('keydown', onKeydownEsc);
+      },
+    },
+    )
 
-  elementGallery.addEventListener('keydown', (event) => {
-    if (event.code === 'Escape') {
-        instance.close();
+    const onKeydownEsc = (event) => {
+      if (event.code === 'Escape') {
+          instance.close();
+      }
     }
-  })
+
+  instance.show();
 }

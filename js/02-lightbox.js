@@ -23,23 +23,8 @@ const makegalleryItems = ({preview, original, description}) => {
 const imegEl = galleryItems.map(makegalleryItems);
 elementGallery.append(...imegEl);
 
-elementGallery.addEventListener("click", selectImages);
-
-function selectImages(event) {
-    event.preventDefault();
-    if (event.target.nodeName !== "IMG") {
-        return;
-      }
-      const lightbox = new SimpleLightbox('.gallery a', {
-        caption: true,
-        captionsData: 'alt',
-        captionDelay: 250,
-      });
-      
-
-  elementGallery.addEventListener('keydown', (event) => {
-    if (event.code === 'Escape') {
-        instance.close();
-    }
-  })
-}
+const lightbox = new SimpleLightbox('.gallery a', {
+  caption: true,
+  captionsData: 'alt',
+  captionDelay: 250,
+});
